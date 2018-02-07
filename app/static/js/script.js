@@ -1,8 +1,6 @@
 // Create local scope with IIFE (Immediatly Invoked Function Expression)
-console.log('global scope');
 (function() {
   'use strict';
-	console.log('local scope')
 	var start = document.querySelector('#start'),
 		bestPractices = document.querySelector('#best-practices');
 	// Initialize appliciation
