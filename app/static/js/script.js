@@ -1,46 +1,34 @@
-// Create local scope with IIFE (Immediatly Invoked Function Expression)
 (function() {
-  'use strict';
-	var start = document.querySelector('#start'),
-		bestPractices = document.querySelector('#best-practices');
+	'use strict';
 	// Initialize appliciation
-  var app = {
+  	var app = {
 		init: function() {
+			window.onload = () => {
+				location.hash && sections.toggle(location.hash)
+			}
 			routes.init();
-
 			// Global app stuff
 		}
 	}
-
 	// Handle routes and states
 	var routes = {
 		init: function() {
-
-			// What's the hash?
-			window.addEventListener("hashchange", function(route){
-				sections.toggle(route);
-			})
+			onhashchange = () => {
+				// What's the hash?
+				sections.toggle(location.hash);
+			}
 		}
 	}
-
 	// Render / toggle sections
 	var sections = {
 		toggle: function(route) {
-			
+			document.querySelectorAll('section').forEach((section) => {
+				section.classList.add('no-display')
+			});
+		document.querySelector(route).classList.remove('no-display')
 			// Toggle this particular section
-			if (window.location.hash == '#best-practices') {
-				start.classList.add('no-display');
-				bestPractices.classList.remove('no-display');
-			} 
-			
-			else if (window.location.hash == '#start') {
-				bestPractices.classList.add('no-display');
-				start.classList.remove('no-display');
-			};
 		}
 	}
-
 	// Start Application
 	app.init();
-
 })()
