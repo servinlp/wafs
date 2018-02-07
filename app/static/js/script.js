@@ -25,6 +25,16 @@
 			document.querySelectorAll('section').forEach((section) => {
 				section.classList.add('no-display')
 			});
+			
+			var listItem = document.querySelectorAll ('li');
+			
+			for (var i = 0; i < listItem.length; i++) {
+				listItem[i].addEventListener("click", function() {
+					listItem[i].classList.add('lekkersicko')
+				})
+				console.log(listItem[i]);
+			}
+
 		document.querySelector(route).classList.remove('no-display')
 			// Toggle this particular section
 		}

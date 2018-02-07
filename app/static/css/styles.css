@@ -20,7 +20,8 @@ time, mark, audio, video {
 	border: 0;
 	font-size: 100%;
 	font: inherit;
-	vertical-align: baseline;
+    vertical-align: baseline;
+    text-decoration: none;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
@@ -52,16 +53,52 @@ table {
 
 body {
     background-color:rgb(255, 252, 213);
-    padding: 0 1em;
 }
 
 main {
+    margin: 0 1em;
+}
+
+section div {
     display: grid;
-    grid-template-columns: 100% 
+    grid-template-columns: 100%;
+}
+
+section div p {
+    margin-bottom: 1em;
 }
 
 .no-display {
     display: none;
+}
+
+header nav ul {
+    display: flex;
+    justify-content: space-around;
+}
+
+header nav ul li a {
+    color: white;
+    transition: all .4s ease;
+    border-bottom: solid black 1px;
+    padding-bottom: .2em;
+    font-size: 20px;
+}
+
+header nav ul li a:hover {
+    border-bottom: solid red 2px;
+}
+
+header nav {
+    width: 100vw;
+}
+
+header {
+    background-color: black;
+    padding: 2em 0;
+    max-width: 100vw;
+    position: fixed;
+    bottom: 0;
 }
 
 h1,
@@ -79,11 +116,31 @@ li {
 h1 {
     font-size: 45px;
     font-weight: 700;
+    margin: .5em 0;
+}
+
+p {
+    line-height: 1.6em;
 }
 
 @media screen and (min-width: 45em) {
     main {
-        grid-template-columns: 49% 49%;
-        grid-column-gap: 2%;
+        margin: 0 2em;
+    }
+
+    section div {
+        grid-template-columns: 48% 48%;
+        grid-column-gap: 4%;
+    }
+
+    header {
+        background-color: black;
+        padding: 1em 0;
+        max-width: 100vw;
+        position: inherit;
+    }
+
+    header nav ul li a {
+        font-size: 16px;
     }
 }
