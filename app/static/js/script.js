@@ -6,21 +6,27 @@ console.log('global scope')
 	// Initialize appliciation
   var app = {
 		init: function() {
+			routs.init();
 
+			// Global app stuff
 		}
 	}
 
-	// Handle routes and stades
+	// Handle routes and states
 	var routes = {
 		init: function() {
 
+			// What's the hash?
+			sections.toggle(route);
 		}
 	}
 
 	// Render / toggle sections
 	var sections = {
-		toggle: {
+		toggle: function(route) {
 
+			// Toggle this particular section
+			console.log(route)
 		}
 	}
 
