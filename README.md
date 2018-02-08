@@ -48,6 +48,19 @@ Libraries have been around forever. They usually come from developers getting fr
 
 * It's not hyped enough
 
+# SPA'S
+
+Single page web apps don't need a server to serve the pages. All the navigation gets done without the browsers needing to refresh.
+
+# Pro's
+
+* SPA's are extremely quick, it just needs to download the files once and that's it
+* SPA's are very simple and quick to deploy, just upload the files and that's it
+* It's good for the user experience because everything happens quickly
+
+# Cons
+
+* You are forced to have Javascript enabled, the page won't work otherwise
 
 ## Best practices
 ...
