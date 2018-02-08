@@ -1,0 +1,24 @@
+main {
+	padding: 50px;
+
+	&.hide-section section {
+		display: none;
+	}
+}
+
+section {
+
+	background: $main;
+	min-height: 50vh;
+	padding: 50px;
+	margin-bottom: 50px;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	&.show {
+		display: block!important;
+		margin-bottom: 0;
+	}
+}
