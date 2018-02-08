@@ -8,8 +8,6 @@ const sections = {
 			sections = Array.from( document.querySelectorAll( 'section' ) ),
 			section = document.querySelector( window.location.hash )
 
-		main.classList.add( 'hide-section' )
-
 		sections.forEach( el => {
 
 			el.classList.remove( 'show' )
