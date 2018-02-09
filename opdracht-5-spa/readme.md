@@ -1,11 +1,23 @@
+# Opdracht 5 - SPA
 
-# Pull request voor Servin van Rick
+## To run
+This project uses `parcel` as it's bundler and `yarn` for it's dependency management.
 
-## Readme file
-Ik mis een readme file in je opdracht-5-spa map (de root van je web app)
+This means the project requires the following
+- Yarn (to install)
 
-## Geen pixels
-Probeer zo veel mogelijk pixels te vermijden. Het gebruik van pixels kan er voor zorgen dat je website minder responsive wordt.
+(Don't have Yarn? Install it [here] )
+[here]: https://yarnpkg.com/en/docs/install
 
-## Omzetten naar prototype zonder yarn en parcel
-Tijdens de minor kijken docenten alleen naar de gecompileerde versie van je website. Ik snap dat je gebruik wilt maken van scss en andere frameworks of libraries, maar uiteindelijk wordt er puur gekeken naar de html/css/js. 
+To run the project first install with
+```
+yarn
+```
+
+To then run the project use
+```
+yarn run parcel index.html
+```
+
+For a live version you can check [this]
+[this]: https://ser.vin/project/spa/

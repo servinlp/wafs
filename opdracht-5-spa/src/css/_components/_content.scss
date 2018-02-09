@@ -1,13 +1,13 @@
 main {
-	padding: 50px;
+	padding: 3em;
 }
 
 section {
 	display: none;
 	background: $main;
 	min-height: 50vh;
-	padding: 50px;
-	margin-bottom: 50px;
+	padding: 3em;
+	margin-bottom: 3em;
 
 	&:last-child {
 		margin-bottom: 0;
