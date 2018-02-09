@@ -37,7 +37,43 @@ A pro and con is the dataflow. The way React is created makes it so that you can
 A quite obvious con of React (but it just depends on if this is something you care about) is that you can't (easily) make it progressive enhanced. Because React is build purely with JavaScript you can't really do this. Maybe unless you use server side rendering but even with that this still remains a task not worth for some.
 
 ## Advantages and disadvantages of client-side single page web apps
-...
+
+### Single, multi, hybrid web app
+I think before we start it might be good to know what the difference is between a singe, multi or hybrid web app.
+
+As the name implies, a single page web app is just one page. You load one page and then depending on your actions it will load new data or an entire new component.
+
+The multi page web app is an application where you will navigate in the traditional way by going between pages.
+
+The hybrid web app is (as the name implies) a hybrid of the two. Having functionalities that live on a single page and still being able to go to another page when nessicary.
+
+### Client side single page web apps
+Here the part of 'client side' is important. This means no communication between app en server unless it's from an api.
+
+Knowing this we can say that something like server side rendering is not an option. Because this app will heavilly rely on JavaScript this means there is no option to make the website pregrassive enhanced.
+
+Another thing to keep in mind with a single page app is the speed. Yes the speed will be fast when sending and receiving data but because everything is wrapped in a single page all the scripts need to be downloaded. This can mean that the first load of the page will be much slower then with a multi page app because here you only need to load the neccecary scripts (instead of all the scripts + frameworks you might be using). (Of course if you properly cache your scripts this will only be a problem for new users.)
+
+A known problem with single page apps though is securety. XSS (Cross-site scripting) has been a known problem with these types of sites. If addressed properly it can be avoided but it will need more attention then with a multi page app.
+
+Overal a single page web app can be a simpler alternative. Development is simplefied/streamlined, your code is easy to debug and the app is easier to turn into a mobile app.
+
+TLDR:
+Pro
+- Speed
+- Development simplefied/streamlined
+- Easy to debug
+- Easier to turn into a mobile app
+
+Con
+- SEO
+- XSS
+- Requires JavaScript
+- Initial download slower
+
+[Resource: Single-page application vs. multiple-page application]
+
+[Resource: Single-page application vs. multiple-page application]: https://medium.com/@NeotericEU/single-page-application-vs-multiple-page-application-2591588efe58
 
 ## Best practices
 ...
