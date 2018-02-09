@@ -45,23 +45,23 @@ As the name implies, a single page web app is just one page. You load one page a
 
 The multi page web app is an application where you will navigate in the traditional way by going between pages.
 
-The hybrid web app is (as the name implies) a hybrid of the two. Having functionalities that live on a single page and still being able to go to another page when nessicary.
+The hybrid web app is (as the name implies) a hybrid of the two. Having functionalities that live on a single page and still being able to go to another page when necessary.
 
 ### Client side single page web apps
 Here the part of 'client side' is important. This means no communication between app en server unless it's from an api.
 
-Knowing this we can say that something like server side rendering is not an option. Because this app will heavilly rely on JavaScript this means there is no option to make the website pregrassive enhanced.
+Knowing this we can say that something like server side rendering is not an option. Because this app will heavily rely on JavaScript this means there is no option to make the website progressive enhanced.
 
-Another thing to keep in mind with a single page app is the speed. Yes the speed will be fast when sending and receiving data but because everything is wrapped in a single page all the scripts need to be downloaded. This can mean that the first load of the page will be much slower then with a multi page app because here you only need to load the neccecary scripts (instead of all the scripts + frameworks you might be using). (Of course if you properly cache your scripts this will only be a problem for new users.)
+Another thing to keep in mind with a single page app is the speed. Yes the speed will be fast when sending and receiving data but because everything is wrapped in a single page all the scripts need to be downloaded. This can mean that the first load of the page will be much slower then with a multi page app because here you only need to load the necessary scripts (instead of all the scripts + frameworks you might be using). (Of course if you properly cache your scripts this will only be a problem for new users.)
 
-A known problem with single page apps though is securety. XSS (Cross-site scripting) has been a known problem with these types of sites. If addressed properly it can be avoided but it will need more attention then with a multi page app.
+A known problem with single page apps though is security. XSS (Cross-site scripting) has been a known problem with these types of sites. If addressed properly it can be avoided but it will need more attention then with a multi page app.
 
-Overal a single page web app can be a simpler alternative. Development is simplefied/streamlined, your code is easy to debug and the app is easier to turn into a mobile app.
+Overall a single page web app can be a simpler alternative. Development is simplified/streamlined, your code is easy to debug and the app is easier to turn into a mobile app.
 
 TLDR:
 Pro
 - Speed
-- Development simplefied/streamlined
+- Development simplified/streamlined
 - Easy to debug
 - Easier to turn into a mobile app
 
