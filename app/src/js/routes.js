@@ -85,6 +85,12 @@ export default class Routes {
 				console.log( req )
 
 			},
+			'/project/hello': req => {
+
+				console.log( 'run' )
+				console.log( req )
+
+			},
 			'/project/:slug/:lalalala': req => {
 
 				console.log( 'run' )
@@ -123,6 +129,10 @@ export default class Routes {
 
 		const URLMatches = this.matchURL( this.path ),
 			variableNames = []
+
+		console.log( 'URLMatches', URLMatches )
+
+		if ( !URLMatches ) return
 
 		// Resource:
 		// http://krasimirtsonev.com/blog/article/deep-dive-into-client-side-routing-navigo-pushstate-hash
@@ -169,15 +179,17 @@ export default class Routes {
 	matchURL() {
 
 		const { path } = this,
+			dashLength = path.match( /\//g || [] ).length,
+
 			possiblePaths = Object.keys( this.paths ),
-			firstPart = path.substr( 0, path.substr( 1 ).indexOf( '/' ) + 1 ),
+			firstPart = path.substr( 0, path.split( '/', 2 ).join( '/' ).length ),
 			possibleMatches = possiblePaths.filter( el => el.includes( firstPart ) )
+								.filter( el => el.match( /\//ig || [] ).length === dashLength )
+								.sort( ( a, b ) => b.lastIndexOf( '/' ) > b.lastIndexOf( ':' ) )
 
-		console.log( firstPart )
-		console.log( possiblePaths )
-		console.log( possibleMatches )
+		if ( possibleMatches.length === 0 ) return
 
-		return [ '/' ]
+		return possibleMatches.filter( el => possiblePaths.includes( el ) )
 
 	}
 	// END DON'T JUDGE THIS
