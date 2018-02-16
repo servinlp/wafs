@@ -1,0 +1,44 @@
+main {
+	padding: 3em;
+}
+
+section {
+	background: $main;
+	min-height: 50vh;
+	padding: 3em;
+	margin-bottom: 0;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	h1 {
+		font-size: 2em;
+		margin-bottom: 1em;
+		flex: 0 0 100%;
+	}
+
+	figure {
+		position: relative;
+		width: 33%;
+		cursor: pointer;
+
+		img {
+			width: 100%;
+			height: auto;
+		}
+
+		figcaption {
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			padding: 1em;
+			text-align: center;
+			background: rgba( $white, 0.6 );
+			box-sizing: border-box;
+		}
+	}
+}

@@ -59,6 +59,7 @@ A known problem with single page apps though is security. XSS (Cross-site script
 Overall a single page web app can be a simpler alternative. Development is simplified/streamlined, your code is easy to debug and the app is easier to turn into a mobile app.
 
 TLDR:
+
 Pro
 - Speed
 - Development simplified/streamlined

@@ -1,0 +1,27 @@
+{
+    "env": {
+        "es6": true,
+        "browser": true
+    },
+    "extends": "airbnb",
+    "rules": {
+        "func-names": ["error", "never"],
+        "quotes": ["error", "single"],
+        "semi": ["error", "never"],
+        "no-console": 0,
+        "space-in-parens": ["warn", "always"],
+        "padded-blocks": ["warn", "always"],
+        "indent": ["error", "tab"],
+        "eol-last": 0,
+        "no-tabs": 0,
+        "one-var": 0,
+        "comma-dangle": ["error", "never"],
+        "no-use-before-define": ["error", { "functions": false, "classes": true }],
+        "arrow-parens": ["error", "as-needed"],
+        "computed-property-spacing": ["error", "always"],
+        "no-param-reassign": ["error", { "props": false }],
+		"template-curly-spacing": ["error", "always"],
+		"wrap-iife": ["error", "inside"],
+		"space-before-function-paren": ["error", "never"]
+    }
+}
