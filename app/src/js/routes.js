@@ -78,7 +78,6 @@ export default class Routes {
 				getProjectContainerData( 'tiltBrush' )
 
 			},
-			// DON'T JUDGE THIS
 			'/project/:slug': req => {
 
 				console.log( 'run' )
@@ -87,7 +86,7 @@ export default class Routes {
 			},
 			'/project/hello': req => {
 
-				console.log( 'run' )
+				console.log( 'hello' )
 				console.log( req )
 
 			},
@@ -99,11 +98,10 @@ export default class Routes {
 			},
 			'/project/:slug/:lalalala/hi': req => {
 
-				console.log( 'run' )
+				console.log( 'hi' )
 				console.log( req )
 
 			},
-			// END DON'T JUDGE THIS
 			'*': req => {
 
 				document.body.insertAdjacentHTML( 'beforeend', fourOfour, req )
@@ -113,7 +111,6 @@ export default class Routes {
 
 	}
 
-	// DON'T JUDGE THIS
 	/**
 	* @return {function} - Returns the function that belonges to the path
 	*/
@@ -187,11 +184,14 @@ export default class Routes {
 								.filter( el => el.match( /\//ig || [] ).length === dashLength )
 								.sort( ( a, b ) => b.lastIndexOf( '/' ) > b.lastIndexOf( ':' ) )
 
+		console.log( 'firstPart', firstPart )
+		console.log( 'possiblePaths', possiblePaths )
+		console.log( 'possibleMatches', possibleMatches )
+
 		if ( possibleMatches.length === 0 ) return
 
 		return possibleMatches.filter( el => possiblePaths.includes( el ) )
 
 	}
-	// END DON'T JUDGE THIS
 
 }

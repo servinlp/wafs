@@ -5,11 +5,12 @@ export default class App {
 	constructor() {
 
 		this.routes = new Routes()
+		// This makes sure you don't need to bind this in the event listener
 		this.handleClickEvent = this.handleClickEvent.bind( this )
 
-		const AllLinks = Array.from( document.querySelectorAll( 'a' ) )
+		const allLinks = Array.from( document.querySelectorAll( 'a' ) )
 
-		AllLinks.forEach( link => {
+		allLinks.forEach( link => {
 
 			link.addEventListener( 'click', this.handleClickEvent )
 

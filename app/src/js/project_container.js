@@ -28,7 +28,10 @@ async function getProjectContainerData( target ) {
 
 		try {
 
-			const result = await ( await fetch( `${ config.api[ target ] }&key=${ config.api.key }` ) ).json(),
+			// The Fetch request
+			const request = await fetch( `${ config.api[ target ] }&key=${ config.api.key }` ),
+				result = await request.json(),
+
 				formatted = parseProjectData( result.assets )
 
 			window.localStorage.setItem( target, JSON.stringify( formatted ) )
