@@ -6,10 +6,10 @@ The course repo for 'Web App From Scratch'
 ### Flow
 
 Here you can see the global structure of the project.
-[alt text](./images/global-structure.png "The global structure of the project")
+![alt text](./images/global-structure.png "The global structure of the project")
 
 And here we can see the actual flow the app takes to function.
-[alt text](./images/flow.png "The flow of the project")
+![alt text](./images/flow.png "The flow of the project")
 
 ### Features
 
