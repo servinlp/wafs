@@ -1,14 +1,15 @@
 import index from '../views/index'
+import header from '../views/header'
+import projectPage from '../views/project'
 import fourOfour from '../views/404'
+import PolyProject from './poly_project'
+import error from '../views/error'
 
-import { getProjectContainerData } from './project_container'
-import Renderer from './renderer'
+import { getProjectContainerData, getSingleProjectData } from './project_container'
 
 export default class Routes {
 
 	constructor() {
-
-		this.r = new Renderer()
 
 		this.goTo( window.location.pathname )
 
@@ -28,19 +29,24 @@ export default class Routes {
 			internal
 		}
 
-		console.log( request )
+		console.log( request.paths )
+		console.log( this.paths[ '*' ] )
 
 		if ( !request.paths ) {
 
-			request.paths = this.paths[ '*' ]
+			request[ '404' ] = true
+			request.paths = {
+				go: this.paths[ '*' ]
+			}
 
 		}
 
-		if ( request.internal ) {
+		console.log( request )
 
-			const main = document.querySelector( 'main' )
+		if ( this.singleProject ) {
 
-			main.remove()
+			this.singleProject.stopRendering()
+			delete this.singleProject
 
 		}
 
@@ -55,16 +61,17 @@ export default class Routes {
 
 				req.all = true
 
-				document.body.insertAdjacentHTML( 'beforeend', this.r.render( index, req ) )
+				// document.body.insertAdjacentHTML( 'beforeend', this.r.render( index, req ) )
+				document.body.insertAdjacentHTML( 'beforeend', index( req ) )
 
-				getProjectContainerData( 'all' )
+				getProjectContainerData( 'combined' )
 
 			},
 			'/blocks': req => {
 
 				req.blocks = true
 
-				document.body.insertAdjacentHTML( 'beforeend', this.r.render( index, req ) )
+				document.body.insertAdjacentHTML( 'beforeend', index( req ) )
 
 				getProjectContainerData( 'blocks' )
 
@@ -73,38 +80,39 @@ export default class Routes {
 
 				req.tiltBrush = true
 
-				document.body.insertAdjacentHTML( 'beforeend', this.r.render( index, req ) )
+				document.body.insertAdjacentHTML( 'beforeend', index( req ) )
 
 				getProjectContainerData( 'tiltBrush' )
 
 			},
 			'/project/:slug': req => {
 
-				console.log( 'run' )
-				console.log( req )
+				const data = getSingleProjectData( req.paths.params.slug )
 
-			},
-			'/project/hello': req => {
+				if ( data.error) {
 
-				console.log( 'hello' )
-				console.log( req )
+					document.body.insertAdjacentHTML( 'beforeend', error( data.message, true ) )
 
-			},
-			'/project/:slug/:lalalala': req => {
+				} else {
 
-				console.log( 'run' )
-				console.log( req )
+					this.singleProject = new PolyProject( data )
 
-			},
-			'/project/:slug/:lalalala/hi': req => {
+					if ( !req.internal ) {
 
-				console.log( 'hi' )
-				console.log( req )
+						document.body.insertAdjacentHTML( 'beforeend', header( req ) )
+
+					}
+
+					document.body.appendChild( this.singleProject.element )
+
+					this.singleProject.initCanvas()
+
+				}
 
 			},
 			'*': req => {
 
-				document.body.insertAdjacentHTML( 'beforeend', fourOfour, req )
+				document.body.insertAdjacentHTML( 'beforeend', fourOfour( req ) )
 
 			}
 		}
@@ -119,78 +127,75 @@ export default class Routes {
 		if ( this.paths[ this.path ] ) {
 
 			return {
-					go: this.paths[ this.path ]
-				}
+				go: this.paths[ this.path ]
+			}
 
 		}
 
-		const URLMatches = this.matchURL( this.path ),
+		const URLMatches = this.matchURL,
 			variableNames = []
-
-		console.log( 'URLMatches', URLMatches )
-
-		if ( !URLMatches ) return
 
 		// Resource:
 		// http://krasimirtsonev.com/blog/article/deep-dive-into-client-side-routing-navigo-pushstate-hash
-		URLMatches.forEach( el => {
 
-			if ( !el.includes( ':' ) ) return
+		if ( !URLMatches || !URLMatches.includes( ':' ) ) return null
 
-			console.log( 'key', el )
+		const route = URLMatches.replace( /([:*])(\w+)/g, ( full, dots, name ) => {
 
-			const route = el.replace( /([:*])(\w+)/g, ( full, dots, name ) => {
+				variableNames.push( name )
 
-					variableNames.push( name )
+				/* eslint-disable no-useless-escape */
+				return '([^\/]+)'
 
-					return '([^\/]+)'
+			} ) + '(?:\/|$)',
+			/* eslint-enable no-useless-escape */
+			match = this.path.match( new RegExp( route ) )
 
-				} ) + '(?:\/|$)',
-				match = this.path.match( new RegExp( route ) )
+		if ( match ) {
 
-			if ( match ) {
+			const params = match.slice( 1, match.length )
+				.reduce( ( param, value, i ) => {
 
-				console.log( 'match', match );
+					// if ( param === null ) param = {}
 
-				const params = match.slice( 1, match.length )
-						.reduce( ( params, value, index ) => {
+					param[ variableNames[ i ] ] = value
 
-							if ( params === null ) params = {}
+					return param
 
-							params[ variableNames[ index ] ] = value
+				}, {} )
 
-							return params
-
-						}, null )
-
-				console.log( 'params', params )
-
+			return {
+				go: this.paths[ URLMatches ],
+				params
 			}
 
-		} )
-
-		console.log( variableNames )
+		}
 
 	}
 
-	matchURL() {
+	get matchURL() {
 
 		const { path } = this,
-			dashLength = path.match( /\//g || [] ).length,
+			dashLength = path.match( /\//g || [] ).length, // Count number of /
 
-			possiblePaths = Object.keys( this.paths ),
+			allPaths = Object.keys( this.paths ),
+
+			// Filter for links that contain a parameter
+			possiblePaths = allPaths.filter( el => el.includes( ':' ) ),
+
+			// Get everything untill the second /
 			firstPart = path.substr( 0, path.split( '/', 2 ).join( '/' ).length ),
+
+			// Filter on firstPart
 			possibleMatches = possiblePaths.filter( el => el.includes( firstPart ) )
-								.filter( el => el.match( /\//ig || [] ).length === dashLength )
-								.sort( ( a, b ) => b.lastIndexOf( '/' ) > b.lastIndexOf( ':' ) )
+				// Filter on the amount of dashes
+				.filter( el => el.match( /\//ig || [] ).length === dashLength )
+				// Sort on links that end with an absolute path instead of a parameter
+				.sort( ( a, b ) => b.lastIndexOf( '/' ) > b.lastIndexOf( ':' ) )
 
-		console.log( 'firstPart', firstPart )
-		console.log( 'possiblePaths', possiblePaths )
-		console.log( 'possibleMatches', possibleMatches )
+		if ( possibleMatches.length === 0 ) return null
 
-		if ( possibleMatches.length === 0 ) return
-
-		return possibleMatches.filter( el => possiblePaths.includes( el ) )
+		return possibleMatches.filter( el => possiblePaths.includes( el ) )[ 0 ]
 
 	}
 
