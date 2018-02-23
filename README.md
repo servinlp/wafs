@@ -1,6 +1,30 @@
 # wafs
 The course repo for 'Web App From Scratch'
 
+## The project
+
+### Flow
+
+Here you can see the global structure of the project.
+[alt text](./images/global-structure.png "The global structure of the project")
+
+And here we can see the actual flow the app takes to function.
+[alt text](./images/flow.png "The flow of the project")
+
+### Features
+
+Using the app you can scroll through the public objects from [Google Poly]. You can chose to see the best of the best or perhaps you only want to see objects from [Google Blocks] or only from [Tilt Brush].
+
+Want to have a closer look? Just click on it and the app will load the object for you to see in all its glory.
+
+Note: This app makes use of the [Google Poly API](https://developers.google.com/poly/)
+
+### Wishlist
+
+- Navigating with the back button
+- Load the objects properly
+- Using the WebVR API
+
 ## Advantages and disadvantages of JavaScript libraries/frameworks
 
 ### Vanilla.js
@@ -79,4 +103,6 @@ Con
 ## Best practices
 ...
 
-[Libararies]:Libararies.md
+[Google Poly]:poly.google.com
+[Google Blocks]:https://vr.google.com/blocks/
+[Tilt Brush]:https://www.tiltbrush.com/
