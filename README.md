@@ -11,6 +11,9 @@ Here you can see the global structure of the project.
 And here we can see the actual flow the app takes to function.
 ![alt text](./images/flow.png "The flow of the project")
 
+And here is the interaction flow the user will go through to see his or her content.
+![alt text](./images/interaction-flow.png "Interaction flow")
+
 ### Features
 
 Using the app you can scroll through the public objects from [Google Poly]. You can chose to see the best of the best or perhaps you only want to see objects from [Google Blocks] or only from [Tilt Brush].
