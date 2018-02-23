@@ -24,6 +24,7 @@ Note: This app makes use of the [Google Poly API](https://developers.google.com/
 - Navigating with the back button
 - Load the objects properly
 - Using the WebVR API
+- Improve routing (Currently a url like `/:slug/settings` won't work)
 
 ## Advantages and disadvantages of JavaScript libraries/frameworks
 
